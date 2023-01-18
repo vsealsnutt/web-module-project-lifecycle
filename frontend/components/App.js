@@ -18,11 +18,15 @@ export default class App extends React.Component {
     });
   }
 
+  resetForm = () => {
+    this.setState({ ...this.state, todoNameInput: ''})
+  }
+
   postNewTodo = () => {
     axios.post(URL, { name: this.state.todoNameInput })
       .then(res => {
         this.fetchAllTodos()
-        this.setState({ ...this.state, todoNameInput: ''})
+        this.resetForm()
       })
       .catch(err => console.error(err))
   }
