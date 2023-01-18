@@ -25,8 +25,11 @@ export default class App extends React.Component {
       <div>
         <div id='todos'>
           <h2>Todos:</h2>
-          <div>Walk the dog</div>
-          <div>Learn React</div>
+          {
+            this.state.todos.map(todo => {
+              return <div key={todo.id}>{todo.name}</div>
+            })
+          }
         </div>
 
         <form id='todoForm'>
