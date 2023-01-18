@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Form from './Form';
 
 const URL = 'http://localhost:9000/api/todos';
 
@@ -78,12 +79,12 @@ export default class App extends React.Component {
             })
           }
         </div>
-
-        <form id='todoForm' onSubmit={this.onSubmit}>
-          <input onChange={this.onChange} value={this.state.todoNameInput} type='text' placeholder='Type todo'></input>
-          <input type='submit'></input>
-          <button onClick={this.handleClear}>Clear Completed</button>
-        </form>
+        <Form
+          onSubmit={this.onSubmit}
+          onChange={this.onChange}
+          todoNameInput={this.state.todoNameInput}
+          handleClear={this.handleClear}
+        />
       </div>
     )
   }
