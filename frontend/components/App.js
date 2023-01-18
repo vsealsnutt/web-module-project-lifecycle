@@ -46,6 +46,14 @@ export default class App extends React.Component {
       });
   }
 
+  handleToggle = id => event => {
+    axios.patch(`${URL}/${id}`)
+      .then(res => {
+        this.fetchAllTodos()
+      })
+      .catch(err => console.error(err))
+  }
+
   componentDidMount() {
     this.fetchAllTodos();
   }
@@ -57,7 +65,7 @@ export default class App extends React.Component {
           <h2>Todos:</h2>
           {
             this.state.todos.map(todo => {
-              return <div key={todo.id}>{todo.name}</div>
+              return <div onClick={this.handleToggle(todo.id)} key={todo.id}>{todo.name}{todo.completed ? '- complete' : ''}</div>
             })
           }
         </div>
