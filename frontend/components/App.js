@@ -54,6 +54,15 @@ export default class App extends React.Component {
       .catch(err => console.error(err))
   }
 
+  handleClear = () => {
+    this.setState({
+      ...this.state,
+      todos: this.state.todos.filter(todo => {
+        return (todo.completed === false);
+      })
+    });
+  }
+
   componentDidMount() {
     this.fetchAllTodos();
   }
@@ -73,7 +82,7 @@ export default class App extends React.Component {
         <form id='todoForm' onSubmit={this.onSubmit}>
           <input onChange={this.onChange} value={this.state.todoNameInput} type='text' placeholder='Type todo'></input>
           <input type='submit'></input>
-          <button>Clear Completed</button>
+          <button onClick={this.handleClear}>Clear Completed</button>
         </form>
       </div>
     )
